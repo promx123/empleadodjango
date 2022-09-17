@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block titulo %}  {{object.full_name}} {% endblock titulo %}
+{% block content %}
+{% include 'includes/header.html' %}
+<div class="grid-container">
+   <div class="grid-x grid-margin-x align-center ">
+    <div class="cell large-4 card" style="width: 300px; margin-top:10px">
+      <div class="card-divider">
+        {{empleado.get_job_display}}   <!--esto solo funciona si en el modelo lo declaramos como choices y el display muestra el segundo valor de choices --> 
+
+      </div>
+      {% if empleado.avatar  %}
+      <img src="{{empleado.avatar.url}} ">
+      {% else  %}
+      <img src=" {% static 'img/empleado1.jpg' %} ">
+      {% endif %}
+      <div class="card-section">
+        <h4>{{empleado.full_name}} </h4>
+        <p>{{empleado.last_name}} </p>
+        <p>{{empleado.departamento.short_name}} </p><!--esto se hace xq como es un objeto que trae mucho datos yo puedo especificar que dato traer-->
+        <p><span class="label">Habilidades: </p>
+        <ul class="vertical menu">
+          {% for h  in empleado.habilidades.all %}
+            <li>{{h.habilidad}} </li>
+          {% endfor %}
+        </ul>
+        <p>{{empleado.habilidades}} </p>
+
+      </div>
+    </div>
+   </div>
+  
+          
+</div>
+
+   
+{% endblock content %}
+  
+    
+

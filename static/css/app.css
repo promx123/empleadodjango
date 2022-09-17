@@ -1,0 +1,26 @@
+
+@import "/static/css/foundation.min.css";
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+    height: 400px;
+    -ms-interpolation-mode: bicubic;
+}
+
+.tabla-titulo{
+    text-align: center;
+}
+
+.inicio {
+        color:black;
+}
+
+#portada{
+    height: 600px  ;
+}
+
+.linkinicio{
+     align-items: center
+}

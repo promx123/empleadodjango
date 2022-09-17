@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% include 'includes/header.html' %}<!--esto tiene que estar en un block -->
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell"> lista empleados</h1>
+        <div class="cell">
+            <table>
+                <thead>
+                  <tr>
+                    <th width="150">Id</th>
+                    <th width="150">NOMBRES</th>
+                    <th width="150">APELLIDOS</th>
+                    <th width="150">DEPARTAMENTOS</th>
+
+                    <th width="150">ACCION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for e in empleados %}
+                  <tr>
+                    <td>{{e.id}} </td>
+                    <td>{{e.first_name}} </td>
+                    <td>{{e.last_name}} </td>
+                    <td>{{e.departamento}} </td>
+                    <td width>
+                        <a class="button success" href="{% url 'persona_app:modificar_empleado' e.id %}">editar</a>
+                        <a class="button alert" href="{% url 'persona_app:eliminar_empleado' e.id %}">eliminar</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+<!--aca arranca la pagination-->
+        <div class="cell">
+          {% if is_paginated  %}
+          
+          <nav aria-label="Pagination">
+            <ul class="pagination">
+              
+              {% if page_obj.has_previous %}
+              <li class="pagination-previous ">
+                <a href="?page={{page_obj.previous_page_number}}"> Atras</a>
+              </li>
+              {% endif %}
+
+
+
+              <!--creas la variable pagina y traes los valores page del arreglo paginator-->
+              {% for pagina in paginator.page_range  %}
+
+              <!--esto es para remarcar la pagina en la que estamos, y para hacerlo comparamos el objeto pagina con page number del obj paginator-->
+              
+              {% if pagina == page_obj.number  %} 
+              <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}} </li>
+              {% else %}
+              <li class=""><a href="?page= {{pagina}} ">{{pagina}}</a></li>
+              {% endif %}
+              {% endfor %}
+                
+                
+              {% if page_obj.has_next %}
+              <li class="pagination-next">
+                <a href="?page={{page_obj.next_page_number}}"> Siguiente</a>
+            </ul>
+            {% endif %}
+          </nav>
+          {% endif %}
+        </div>
+        
+    </div>
+   
+</div>
+
+
+
+{% endblock content %}
+
+    
+       
+    
+

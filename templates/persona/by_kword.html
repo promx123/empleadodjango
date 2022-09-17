@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+     <h1> buscar empleados por palabra clave</h1>
+     <form method='GET'>{% csrf_token %}
+        <input type = "text" id = "kword" name= "kword" placeholder = "ingrese nombre aqui" >
+        <<a name="" id="" class="btn btn-primary" href="#" type = "submit" ></a>
+        
+     </form>
+
+     <h3> lista resultado </h3>
+        <ul>
+            
+            {% for e in empleados %}
+            <li> {{e}} </li>
+            {% endfor %}
+            
+                
+        </ul>
+        <script src="" async defer></script>
+    </body>
+</html>
